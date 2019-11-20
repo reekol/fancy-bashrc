@@ -1,4 +1,4 @@
-export TIMEFORMAT="Real: %R, User: %U, System: %S $nk_start"
+export TIMEFORMAT="Real: %R, User: %U, System: %S"
 bind '"\C-j": "\C-atime \C-m"' # Run commands with Ctrl+J to see their execution time
 
 nk_branch_color() {
