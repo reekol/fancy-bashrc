@@ -1,7 +1,7 @@
 export TIMEFORMAT="Real: %R, User: %U, System: %S"
 bind '"\C-j": "\C-atime \C-m"' # Run commands with Ctrl+J to see their execution time
 
-nk_color_red()  { echo -e "\e[0;4;31m";      }
+nk_color_red()  { echo -e "\e[0;1;31m";      }
 nk_color_green(){ echo -e "\e[0;32m";        }
 nk_color_blue() { echo -e "\e[0;34m";        }
 nk_color_nc()   { echo -e "\e[0m";           }
