@@ -12,7 +12,7 @@ nk_branch_color() {
 nk_clock(){
     while sleep 1;do
         tput sc; tput cup 0 $(($( tput cols )-30))
-        echo -e "$(nk_color_red)`nk_dt` $(nk_color_nc)}"
+        echo -e "$(nk_color_red)`nk_dt` $(nk_color_nc)"
         tput rc
     done &
 }
