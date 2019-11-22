@@ -19,7 +19,7 @@ nk_clock(){
 
 nk_git_ps1()    { 
     #__git_ps1 2>/dev/null;
-    git branch --no-color 2>/dev/null
+    git branch --no-color 2>/dev/null | grep -e ^*
 }
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
