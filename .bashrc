@@ -3,7 +3,7 @@ bind '"\C-j": "\C-atime \C-m"' # Run commands with Ctrl+J to see their execution
 
 nk_color_red()  { echo -e "\e[0;1;31m";      }
 nk_color_green(){ echo -e "\e[0;32m";        }
-nk_color_blue() { echo -e "\e[0;1;34m";        }
+nk_color_blue() { echo -e "\e[0;1;34m";      }
 nk_color_nc()   { echo -e "\e[0m";           }
 nk_dt()         { date '+%Y-%M-%d %H:%m:%S'; }
 nk_branch_color() {
