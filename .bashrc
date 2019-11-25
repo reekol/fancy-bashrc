@@ -23,6 +23,21 @@ nk_git_ps1()    {
     git branch --no-color 2>/dev/null | grep -e ^*
 }
 
+# \/ \/ \/ Just ane example backup drive that should be mounted
+nk_bu_drive="471ce8b8-37c2-4c61-a83c-ad3481d74023" 
+nk_bu_source='/'
+nk_bu_destnt="/media/$USER/$nk_bu_drive/bu_rsync"
+
+nk_bu_create(){
+    [ -d $nk_bu_destnt ] || mkdir $nk_bu_destnt
+    sudo rsync -aAXv $nk_bu_source --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} $nk_bu_destnt
+}
+nk_bu_restore(){
+#    Dangerous. Commented. Uncomment if needed
+#    sudo rsync -aAXv $nk_bu_destnt --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} $nk_bu_source
+     echo "Done $(nk_dt)"
+}
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE="$(nk_color_red)remote/ssh$(nk_color_nc) "
 else
