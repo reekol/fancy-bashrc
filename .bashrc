@@ -6,6 +6,7 @@ nk_color_green(){ echo -e "\e[0;32m";        }
 nk_color_blue() { echo -e "\e[0;1;34m";      }
 nk_color_nc()   { echo -e "\e[0m";           }
 nk_dt()         { date '+%Y-%M-%d %H:%m:%S'; }
+nk_dt_dir()     { date '+%Y-%M-%d-%H-%m-%S'; }
 nk_branch_color() {
     [[ -n $(git status --porcelain=v2 2>/dev/null) ]] && echo -e "$(nk_color_red)" || echo -e "$(nk_color_green)"
 }
