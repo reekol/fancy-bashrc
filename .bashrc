@@ -29,7 +29,7 @@ nk_bu_source='/'
 nk_bu_destnt="/media/$USER/$nk_bu_drive/bu_rsync"
 
 nk_bu_create(){
-    [ -d $nk_bu_destnt ] || mkdir $nk_bu_destnt
+    [ -d $nk_bu_destnt ] || sudo mkdir $nk_bu_destnt
     sudo rsync -aAXv $nk_bu_source --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} $nk_bu_destnt
 }
 nk_bu_restore(){
