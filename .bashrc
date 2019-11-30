@@ -38,6 +38,37 @@ nk_bu_restore(){
      echo "Done $(nk_dt)"
 }
 
+##
+## Moon phase script from -> https://smithje.github.io/bash/2013/07/08/moon-phase-prompt
+##
+
+nk_get_phase_day () {
+  local lp=2551443
+  local now=$(date -u +"%s")
+  local newmoon=592500
+  local phase=$((($now - $newmoon) % $lp))
+  echo $(((phase / 86400) + 1))
+}
+
+nk_get_moon_icon () {
+  local phase_number=$(nk_get_phase_day)
+  # Multiply by 100000 so we can do integer comparison.  Go Bash!
+  local phase_number_biggened=$((phase_number * 100000))
+
+  if   [ $phase_number_biggened -lt 184566 ];  then phase_icon="🌑"  # new
+  elif [ $phase_number_biggened -lt 553699 ];  then phase_icon="🌒"  # waxing crescent
+  elif [ $phase_number_biggened -lt 922831 ];  then phase_icon="🌓"  # first quarter
+  elif [ $phase_number_biggened -lt 1291963 ]; then phase_icon="🌔"  # waxing gibbous
+  elif [ $phase_number_biggened -lt 1661096 ]; then phase_icon="🌕"  # full
+  elif [ $phase_number_biggened -lt 2030228 ]; then phase_icon="🌖"  # waning gibbous
+  elif [ $phase_number_biggened -lt 2399361 ]; then phase_icon="🌗"  # last quarter
+  elif [ $phase_number_biggened -lt 2768493 ]; then phase_icon="🌘"  # waning crescent
+  else                                     phase_icon="🌑"  # new
+  fi
+  echo $phase_icon
+
+}
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE="$(nk_color_red)remote/ssh$(nk_color_nc) "
 else
@@ -46,4 +77,4 @@ else
   esac
 fi
 
-PS1='\n$(nk_color_green)┌$(nk_color_nc)[$(nk_dt)] $(nk_color_green)\u $SESSION_TYPE$(nk_color_nc)@ $(nk_color_blue)\h \w$(nk_color_nc) $(nk_branch_color)$(nk_git_ps1)\n$(nk_color_green)└▶\$$(nk_color_nc)'
+PS1='\n$(nk_color_green)┌$(nk_color_nc)[$(nk_dt)] $(nk_color_green)\u $SESSION_TYPE$(nk_color_nc)$(nk_get_moon_icon) $(nk_color_blue)\h \w$(nk_color_nc) $(nk_branch_color)$(nk_git_ps1)\n$(nk_color_green)└▶\$$(nk_color_nc)'
