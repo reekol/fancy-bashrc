@@ -69,6 +69,10 @@ nk_get_moon_icon () {
 
 }
 
+nk_load_current () {
+    echo "($(uptime | awk '{print $(NF-2)}' | head --bytes -2)/$(nproc)) * 100" | tr ',' '.' | bc -l | head --bytes 6
+}
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE="$(nk_color_red)remote/ssh$(nk_color_nc) "
 else
@@ -77,4 +81,4 @@ else
   esac
 fi
 
-PS1='\n$(nk_color_green)┌$(nk_color_nc)[$(nk_dt)] $(nk_color_green)\u $SESSION_TYPE$(nk_color_nc)$(nk_get_moon_icon) $(nk_color_blue)\h \w$(nk_color_nc) $(nk_branch_color)$(nk_git_ps1)\n$(nk_color_green)└▶\$$(nk_color_nc)'
+PS1='\n$(nk_color_green)┌$(nk_color_nc)[$(nk_dt)] $(nk_color_green)\u $SESSION_TYPE$(nk_color_nc)$(nk_get_moon_icon) $(nk_color_blue)[$(nk_load_current)%] \h \w$(nk_color_nc) $(nk_branch_color)$(nk_git_ps1)\n$(nk_color_green)└▶\$$(nk_color_nc)'
