@@ -81,4 +81,13 @@ else
   esac
 fi
 
-PS1='\n$(nk_color_green)┌$(nk_color_nc)[$(nk_dt)] $(nk_color_green)\u $SESSION_TYPE$(nk_color_nc)$(nk_get_moon_icon) $(nk_color_blue)[$(nk_load_current)%] \h \w$(nk_color_nc) $(nk_branch_color)$(nk_git_ps1)\n$(nk_color_green)└▶\$$(nk_color_nc)'
+PS1='\n\
+$(nk_color_red)\$ \
+$(nk_color_nc)[$(nk_dt)] \
+$(nk_color_green)\u $SESSION_TYPE$(nk_color_nc)\
+$(nk_get_moon_icon) \
+$(nk_color_blue)[$(nk_load_current)%] \
+\h \w$(nk_color_nc) \
+$(nk_branch_color)\
+$(nk_git_ps1)\
+$(nk_color_nc)\n\r\r\r\r\r\r\r\r\r\r\r'
