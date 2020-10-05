@@ -73,6 +73,12 @@ nk_load_current () {
     echo "($(uptime | awk '{print $(NF-2)}' | head --bytes -2)/$(nproc)) * 100" | tr ',' '.' | bc -l | head --bytes 6
 }
 
+nk_cast_screen () {
+    ffmpeg -r 15 -f x11grab -s 1920x1080 -i :0.0 -c:v libx264    -pix_fmt yuv420p -preset veryfast -tune zerolatency -bsf:v h264_mp4toannexb -b:v 5000k -bufsize 500k -f mpegts udp://127.0.0.1:8888
+    echo "Cast to udp://127.0.0.1:8888"
+    echo ""
+}
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE="$(nk_color_red)remote/ssh$(nk_color_nc) "
 else
